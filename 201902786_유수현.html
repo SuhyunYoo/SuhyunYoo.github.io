@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트 연습</title>
+    <script> 
+        // HTML 내부 자바스크립트 
+        document.write("내부 자바스크립트 연습<hr>"); 
+
+      </script> 
+</head>
+<body>
+    <script>
+        let num = 10;
+        num++;
+        document.write("num++ = " + num + "<br>" )
+
+        let rad, add;
+        rad = prompt("반지름을 입력하세요")
+        rad = parseInt(rad)
+        rad = rad*rad*3.14
+        document.write("원의 넓이 = " + rad + "<br>")
+
+        document.write(num>=10 && rad<=10 + "<br>") 
+        document.write(num>=10 || rad<=10)
+    </script>
+    
+    
+</body>
+</html>
