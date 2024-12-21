@@ -1,20 +1,49 @@
-
-
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>천문 정보</title>
     <style>
-        body{background-color: hsl(221, 27%, 76%);}
-        header{text-align: center;}
-    nav {background-color:rgb(113, 137, 168); padding: 15px;}
-    nav a{margin: 0 120px;
+        body {background-color: hsl(221, 27%, 76%);}
+        header {text-align: center;}
+        nav {background-color: rgb(113, 137, 168); padding: 15px;}
+        nav a {
+            margin: 0 120px;
             color: white;
             font-size: 18px;
-            font-weight: bold;}
-        </style>
+            font-weight: bold;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        section.active {
+            display: block;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 3rem; 
+            color: black;
+            user-select: none;
+        }
+        #calendar-section div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px; 
+        }
+        #calendar-section img {
+            max-width: 60%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>  
     <header>
@@ -22,23 +51,126 @@
             <img src="image/1.png" style="width: 100%; height: auto;">
         </div>
     </header>
-            <h1 style="position: absolute; top: 25px; left: 0; right: 0; text-align: center; color: white;">
-                ALL ABOUT UNIVERSE</h1>
-            <nav>
-                <a href="#knowledge">천문 지식</a>
-                <a href="#">천문 달력</a>
-                <a href="#">관측 장비</a>
-                <a href="#">관측 날씨</a>
-            </nav>
-        <h3 style="position: absolute; top:5px; right: 20px; color: white;">201902786 유수현</h3>
+    <h1 style="position: absolute; top: 25px; left: 0; right: 0; text-align: center; color: white;">
+        ALL ABOUT UNIVERSE</h1>
+    <nav>
+        <a href="#" onclick="showSection('knowledge')">천문 지식</a>
+        <a href="#" onclick="showSection('calendar-section')">천문 달력</a>
+        <a href="#" onclick="showSection('constellation')">나의 별자리</a>
+        <a href="#" onclick="showSection('weather')">관측 날씨</a>
+    </nav>
+    <h3 style="position: absolute; top:5px; right: 20px; color: white;">201902786 유수현</h3>
 
-        <section id="knowledge">
-            <h2>항성</h2>
-            <h3>별의 일생</h3>
-            <p>태양처럼 자체중력으로 묶여져 있으며, 내부에서 핵융합반응으로 열을 생산함으로써 스스로 빛을 방출하는 천체를 의미합니다.
+    <section id="knowledge" class="active">
+        <h2>항성</h2>
+        <h3>별의 일생</h3>
+        <p>이 땅의 생물들 처럼, 밤하늘에 빛나는 별들도 태어나서 빛을 내며 지내다가, 
+        수명이 다하면 폭발을 일으키며 일생을 마친다.
         <br><br>
-                <img src="image/별의일생.png" style="width: 50%; height: auto;">
+        <img src="image/별의일생.png" style="width: 50%; height: auto;">
+        <br><br>
+        <h2>은하</h2>
+        <h3>안드로메다 은하</h3>
+        <p>안드로메다은하는 안드로메다 별자리에 있는 유명한 은하로서, 
+        우리은하에서 250만 광년 떨어진 곳에 있으며 최초로 발견된 외부은하이다.
+        <br><br>
+        <img src="image/은하.png" style="width: 50%; height: auto;">
+    </section>
 
+    <section id="calendar-section">
+        <div>
+            <span class="arrow" onclick="changeCalendar(-1)">&#9664;</span>
+            <img id="calendar-image" src="image/천문달력2412.png" alt="천문 달력">
+            <span class="arrow" onclick="changeCalendar(1)">&#9654;</span>
+        </div>
+    </section>
+
+    <section id="constellation">
+        <h2>나의 별자리</h2>
+        <form id="birthday-form">
+            <label for="birthday">나의 생일:</label>
+            <input type="date" id="birthday" name="birthday" required>
+            <button type="submit">제출</button>
+        </form>
+        <p id="zodiac-result"></p>
+    </section>
+
+    <section id="weather">
+        <h2>관측 날씨</h2>
+        <iframe src="https://www.weather.go.kr" style="width: 100%; height: 600px; border: none;"></iframe>
+    </section>
+
+    <script>
+        const calendars = [
+            "image/천문달력2412.png",
+            "image/천문달력2501.png",
+            "image/천문달력2502.png",
+            "image/천문달력2503.png",
+            "image/천문달력2504.png",
+            "image/천문달력2505.png",
+            "image/천문달력2506.png",
+            "image/천문달력2507.png",
+            "image/천문달력2508.png",
+            "image/천문달력2509.png",
+            "image/천문달력2510.png",
+            "image/천문달력2511.png",
+            "image/천문달력2512.png"
+        ];
+        let currentIndex = 0;
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+        }
+
+        function changeCalendar(direction) {
+            currentIndex = (currentIndex + direction + calendars.length) % calendars.length;
+            document.getElementById('calendar-image').src = calendars[currentIndex];
+        }
+
+        function getBirthday(day, month) {
+            if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
+                return "염소자리";
+            } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
+                return "물병자리";
+            } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
+                return "물고기자리";
+            } else if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
+                return "양자리";
+            } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
+                return "황소자리";
+            } else if ((month === 5 && day >= 21) || (month === 6 && day <= 21)) {
+                return "쌍둥이자리";
+            } else if ((month === 6 && day >= 22) || (month === 7 && day <= 22)) {
+                return "게자리";
+            } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
+                return "사자자리";
+            } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
+                return "처녀자리";
+            } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
+                return "천칭자리";
+            } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
+                return "전갈자리";
+            } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
+                return "사수자리";
+            }
+        }
+
+        document.getElementById('birthday-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const birthday = new Date(document.getElementById('birthday').value);
+            const month = birthday.getMonth() + 1;
+            const day = birthday.getDate();
+            const zodiac = getBirthday(day, month);
+            const result = `당신의 생일은 ${month}월 ${day}일이며, 별자리는 ${zodiac}입니다.`;
+            document.getElementById('zodiac-result').textContent = result;
+        });
+    </script>
 </body>
 </html>
-
