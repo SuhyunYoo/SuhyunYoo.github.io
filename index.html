@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,109 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>천문 정보</title>
     <style>
-        /* CSS */
-        body {
-            background-color: hsl(221, 27%, 76%);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            text-align: center;
-            position: relative;
-        }
-        header img {
-            width: 100%;
-            height: auto;
-        }
-        h1 {
-            position: absolute;
-            top: 25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            font-size: 2.5rem;
-        }
-        h3.author {
-            position: absolute;
-            top: 5px;
-            right: 20px;
-            color: white;
-        }
-        nav {
-            background-color: rgb(113, 137, 168);
-            padding: 15px;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 20px;
+        body{background-color: hsl(221, 27%, 76%);}
+        header{text-align: center;}
+    nav {background-color:rgb(113, 137, 168); padding: 15px;}
+    nav a{margin: 0 120px;
             color: white;
             font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        section img {
-            width: 50%;
-            height: auto;
-            margin-top: 20px;
-        }
-        /* 버튼 스타일 */
-        .button {
-            background-color: rgb(63, 94, 251);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: rgb(34, 60, 209);
-        }
-    </style>
+            font-weight: bold;}
+        </style>
 </head>
-<body>
-    <!-- Header -->
+<body>  
     <header>
-        <img src="image/1.png" alt="천문 정보 배경 이미지">
-        <h1>ALL ABOUT UNIVERSE</h1>
-        <h3 class="author">201902786 유수현</h3>
+        <div class="absolute">
+            <img src="image/1.png" style="width: 100%; height: auto;">
+        </div>
     </header>
+            <h1 style="position: absolute; top: 25px; left: 0; right: 0; text-align: center; color: white;">
+                ALL ABOUT UNIVERSE</h1>
+            <nav>
+                <a href="#knowledge">천문 지식</a>
+                <a href="#">천문 달력</a>
+                <a href="#">관측 장비</a>
+                <a href="#">관측 날씨</a>
+            </nav>
+        <h3 style="position: absolute; top:5px; right: 20px; color: white;">201902786 유수현</h3>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#knowledge">천문 지식</a>
-        <a href="#">천문 달력</a>
-        <a href="#">관측 장비</a>
-        <a href="#">관측 날씨</a>
-    </nav>
+        <section id="knowledge">
+            <h2>항성</h2>
+            <h3>별의 일생</h3>
+            <p>태양처럼 자체중력으로 묶여져 있으며, 내부에서 핵융합반응으로 열을 생산함으로써 스스로 빛을 방출하는 천체를 의미합니다.
+        <br><br>
+                <img src="image/별의일생.png" style="width: 50%; height: auto;">
 
-    <!-- Main Content -->
-    <section id="knowledge">
-        <h2>항성</h2>
-        <h3>별의 일생</h3>
-        <p>
-            태양처럼 자체중력으로 묶여져 있으며, 내부에서 핵융합반응으로 열을 생산함으로써 스스로 빛을 방출하는 천체를 의미합니다.
-        </p>
-        <img src="image/별의일생.png" alt="별의 일생 이미지">
-        <!-- 버튼 추가 -->
-        <button class="button" onclick="showMessage()">Learn More</button>
-    </section>
-
-    <script>
-        // JavaScript
-        function showMessage() {
-            alert("별의 일생에 대해 더 알아보세요!");
-        }
-    </script>
 </body>
 </html>
+
